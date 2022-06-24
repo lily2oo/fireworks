@@ -11,7 +11,7 @@ function init() {
   if (os == "iphone") {
       // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
       // permitDeviceOrientationForSafari();
-      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
+      permitDeviceOrientationForSafari();
 
       window.addEventListener(
           "deviceorientation",
@@ -19,11 +19,7 @@ function init() {
           true
       );
   } else if (os == "android") {
-      window.addEventListener(
-          "deviceorientationabsolute",
-          orientation,
-          true
-      );
+      window.alert("未対応")
   } else{
       window.alert("PC未対応サンプル");
   }
