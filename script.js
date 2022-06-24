@@ -1,5 +1,56 @@
 var num = 20;
 var balls = [];
+let os;
+
+// DOM構築完了イベントハンドラ登録
+window.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  // 簡易的なOS判定
+  os = detectOSSimply();
+  if (os == "iphone") {
+      // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
+      // permitDeviceOrientationForSafari();
+      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
+
+      window.addEventListener(
+          "deviceorientation",
+          orientation,
+          true
+      );
+  } else{
+      window.alert("PC未対応サンプル");
+  }
+}
+
+function detectOSSimply() {
+  let ret;
+  if (
+      navigator.userAgent.indexOf("iPhone") > 0 ||
+      navigator.userAgent.indexOf("iPad") > 0 ||
+      navigator.userAgent.indexOf("iPod") > 0
+  ) {
+      // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
+      ret = "iphone";
+  } else {
+      ret = "pc";
+  }
+
+  return ret;
+}
+
+function permitDeviceOrientationForSafari() {
+  DeviceOrientationEvent.requestPermission()
+    .then(response => {
+      if (response === "granted") {
+        window.addEventListener(
+          "deviceorientation",
+          detectDirection
+        );
+      }
+    })
+    .catch(console.error);
+}
 
 function preload() {
   bg = loadImage('img/bg.jpg');
