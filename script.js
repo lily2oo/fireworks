@@ -64,7 +64,9 @@ function draw() {
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
-    balls[i].cB = rotationZ; 
+    balls[i].cR = rotationX;
+    balls[i].cB = rotationZ;
+    balls[i].cG = rotationY; 
   }
 }
 
