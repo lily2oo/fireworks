@@ -12,7 +12,7 @@ function init() {
     // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
     // permitDeviceOrientationForSafari();
     document.getElementById("test").innerHTML = "SP";
-    document.addEventListener("click", permitDeviceOrientationForSafari);
+    document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
     window.addEventListener(
       "deviceorientation",
       orientation,
