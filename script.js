@@ -11,7 +11,7 @@ function init() {
   if (os == "iphone") {
       // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
       // permitDeviceOrientationForSafari();
-      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
+      permitDeviceOrientationForSafari();
 
       window.addEventListener(
           "deviceorientation",
