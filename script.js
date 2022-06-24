@@ -1,5 +1,9 @@
 var num = 20;
 var balls = [];
+let os;
+
+// DOM構築完了イベントハンドラ登録
+window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   // 簡易的なOS判定
@@ -23,6 +27,24 @@ function init() {
   } else{
       window.alert("PC未対応サンプル");
   }
+}
+
+function detectOSSimply() {
+  let ret;
+  if (
+      navigator.userAgent.indexOf("iPhone") > 0 ||
+      navigator.userAgent.indexOf("iPad") > 0 ||
+      navigator.userAgent.indexOf("iPod") > 0
+  ) {
+      // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
+      ret = "iphone";
+  } else if (navigator.userAgent.indexOf("Android") > 0) {
+      ret = "android";
+  } else {
+      ret = "pc";
+  }
+
+  return ret;
 }
 
 function permitDeviceOrientationForSafari() {
