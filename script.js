@@ -18,8 +18,6 @@ function init() {
           orientation,
           true
       );
-  } else if (os == "android") {
-      window.alert("未対応")
   } else{
       window.alert("PC未対応サンプル");
   }
@@ -34,8 +32,6 @@ function detectOSSimply() {
   ) {
       // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
       ret = "iphone";
-  } else if (navigator.userAgent.indexOf("Android") > 0) {
-      ret = "android";
   } else {
       ret = "pc";
   }
