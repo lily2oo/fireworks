@@ -2,31 +2,27 @@ var num = 20;
 var balls = [];
 let os;
 
-// DOM構築完了イベントハンドラ登録
 window.addEventListener("DOMContentLoaded", init);
+os = detectOSSimply();
 
 function init() {
-  // 簡易的なOS判定
-  os = detectOSSimply();
   if (os == "iphone") {
-      // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
-      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari)
-  } else{
-      console.log("未対応");
+    document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari)
+  } else {
+    console.log("未対応");
   }
 }
 
 function detectOSSimply() {
   let ret;
   if (
-      navigator.userAgent.indexOf("iPhone") > 0 ||
-      navigator.userAgent.indexOf("iPad") > 0 ||
-      navigator.userAgent.indexOf("iPod") > 0
+    navigator.userAgent.indexOf("iPhone") > 0 ||
+    navigator.userAgent.indexOf("iPad") > 0 ||
+    navigator.userAgent.indexOf("iPod") > 0
   ) {
-      // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
-      ret = "iphone";
+    ret = "iphone";
   } else {
-      ret = "pc";
+    ret = "pc";
   }
 
   return ret;
@@ -64,9 +60,13 @@ function draw() {
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
-    balls[i].cR = rotationX;
-    balls[i].cB = rotationZ;
-    balls[i].cG = rotationY; 
+    if (os == "iphone") {
+      balls[i].cR += rotationX / 30;
+      balls[i].cB += rotationX / 20;
+      balls[i].cG += rotationX / 10;
+      balls[i].speed = rotationZ / 3600;
+      balls[i].size = rotationY / 10;
+    }
   }
 }
 
@@ -96,6 +96,8 @@ class Ball {
     this.r = 0;
     this.x = 0;
     this.y = 0;
+    this.speed = 0.02;
+    this.size = 18;
   }
 
   update() {
@@ -103,13 +105,13 @@ class Ball {
   }
 
   display() {
-    this.theta += 0.02;
+    this.theta += this.speed;
     this.r = 1 + cos(7 * this.theta / 8)
     this.x = this.r * sin(this.theta) * 80;
     this.y = this.r * cos(this.theta) * 80;
     fill(this.cR, this.cG, this.cB, 120);
     noStroke();
-    ellipse(this.x, this.y, 18);
+    ellipse(this.x, this.y, this.size);
     rotate(this.angle);
   }
 }
