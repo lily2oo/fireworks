@@ -18,9 +18,10 @@ function init() {
           orientation,
           true
       );
-      alert("spだよ");
+      document.getElementById("test").innerHTML = "SP";
   } else{
      console.log("PC未対応サンプル");
+     document.getElementById("test").innerHTML = "PC";
   }
 }
 
