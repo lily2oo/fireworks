@@ -20,4 +20,5 @@ canvas {
 #permit{
   position: relative;
   z-index: 1000;
+  font-size: 18px;
 }

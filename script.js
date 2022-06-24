@@ -61,11 +61,11 @@ function draw() {
     balls[i].display();
     balls[i].update();
     if (os == "iphone") {
-      balls[i].cR += rotationX / 30;
-      balls[i].cB += rotationX / 20;
-      balls[i].cG += rotationX / 10;
+      balls[i].cR = rotationX;
+      balls[i].cB = rotationY;
+      balls[i].cG = rotationZ;
       balls[i].speed = rotationZ / 3600;
-      balls[i].size = rotationY / 10;
+      balls[i].size = rotationY;
     }
   }
 }
