@@ -63,7 +63,7 @@ function draw() {
     if (os == "iphone") {
       balls[i].cR = rotationX;
       balls[i].speed = rotationZ / 3600;
-      balls[i].size = rotationY;
+      balls[i].size = rotationZ;
     }
   }
 }
