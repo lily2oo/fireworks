@@ -2,44 +2,44 @@ var num = 20;
 var balls = [];
 let os;
 
-window.addEventListener("DOMContentLoaded", init);
-os = detectOSSimply();
+// window.addEventListener("DOMContentLoaded", init);
+// os = detectOSSimply();
 
-function init() {
-  if (os == "iphone") {
-    document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari)
-  } else {
-    console.log("未対応");
-  }
-}
+// function init() {
+//   if (os == "iphone") {
+//     document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari)
+//   } else {
+//     console.log("未対応");
+//   }
+// }
 
-function detectOSSimply() {
-  let ret;
-  if (
-    navigator.userAgent.indexOf("iPhone") > 0 ||
-    navigator.userAgent.indexOf("iPad") > 0 ||
-    navigator.userAgent.indexOf("iPod") > 0
-  ) {
-    ret = "iphone";
-  } else {
-    ret = "pc";
-  }
+// function detectOSSimply() {
+//   let ret;
+//   if (
+//     navigator.userAgent.indexOf("iPhone") > 0 ||
+//     navigator.userAgent.indexOf("iPad") > 0 ||
+//     navigator.userAgent.indexOf("iPod") > 0
+//   ) {
+//     ret = "iphone";
+//   } else {
+//     ret = "pc";
+//   }
 
-  return ret;
-}
+//   return ret;
+// }
 
-function permitDeviceOrientationForSafari() {
-  DeviceOrientationEvent.requestPermission()
-    .then(response => {
-      if (response === "granted") {
-        window.addEventListener(
-          "deviceorientation",
-          detectDirection
-        );
-      }
-    })
-    .catch(console.error);
-}
+// function permitDeviceOrientationForSafari() {
+//   DeviceOrientationEvent.requestPermission()
+//     .then(response => {
+//       if (response === "granted") {
+//         window.addEventListener(
+//           "deviceorientation",
+//           detectDirection
+//         );
+//       }
+//     })
+//     .catch(console.error);
+// }
 
 function preload() {
   bg = loadImage('img/bg.jpg');
@@ -60,11 +60,9 @@ function draw() {
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
-    if (os == "iphone") {
       balls[i].cR = rotationX;
       balls[i].speed = rotationZ / 36000;
       balls[i].size += accelerationX;
-    }
   }
 }
 
