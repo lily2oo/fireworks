@@ -10,13 +10,7 @@ function init() {
   os = detectOSSimply();
   if (os == "iphone") {
       // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
-      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
-
-      window.addEventListener(
-          "deviceorientation",
-          orientation,
-          true
-      );
+      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari)
   } else{
       console.log("未対応");
   }
@@ -70,6 +64,7 @@ function draw() {
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
+    balls[i].cB = rotationX; 
   }
 }
 
