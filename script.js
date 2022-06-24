@@ -18,8 +18,9 @@ function init() {
           orientation,
           true
       );
+      alert("spだよ");
   } else{
-      window.alert("PC未対応サンプル");
+     console.log("PC未対応サンプル");
   }
 }
 
