@@ -10,7 +10,6 @@ function init() {
   os = detectOSSimply();
   if (os == "iphone") {
       // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
-      // permitDeviceOrientationForSafari();
       document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
 
       window.addEventListener(
@@ -19,7 +18,7 @@ function init() {
           true
       );
   } else{
-      window.alert("PC未対応サンプル");
+      console.log("未対応");
   }
 }
 
