@@ -9,33 +9,33 @@ function init() {
   // 簡易的なOS判定
   os = detectOSSimply();
   if (os == "iphone") {
-      // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
-      // permitDeviceOrientationForSafari();
-      window.addEventListener("load", permitDeviceOrientationForSafari);
+    // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
+    // permitDeviceOrientationForSafari();
+    document.getElementById("test").innerHTML = "SP";
+    window.addEventListener("load", permitDeviceOrientationForSafari);
 
-      window.addEventListener(
-          "deviceorientation",
-          orientation,
-          true
-      );
-      document.getElementById("test").innerHTML = "SP";
-  } else{
-     console.log("PC未対応サンプル");
-     document.getElementById("test").innerHTML = "PC";
+    window.addEventListener(
+      "deviceorientation",
+      orientation,
+      true
+    );
+  } else {
+    console.log("PC未対応サンプル");
+    document.getElementById("test").innerHTML = "PC";
   }
 }
 
 function detectOSSimply() {
   let ret;
   if (
-      navigator.userAgent.indexOf("iPhone") > 0 ||
-      navigator.userAgent.indexOf("iPad") > 0 ||
-      navigator.userAgent.indexOf("iPod") > 0
+    navigator.userAgent.indexOf("iPhone") > 0 ||
+    navigator.userAgent.indexOf("iPad") > 0 ||
+    navigator.userAgent.indexOf("iPod") > 0
   ) {
-      // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
-      ret = "iphone";
+    // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
+    ret = "iphone";
   } else {
-      ret = "pc";
+    ret = "pc";
   }
 
   return ret;
