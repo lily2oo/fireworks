@@ -1,6 +1,29 @@
 var num = 20;
 var balls = [];
 
+function init() {
+  // 簡易的なOS判定
+  os = detectOSSimply();
+  if (os == "iphone") {
+      // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
+      permitDeviceOrientationForSafari();
+
+      window.addEventListener(
+          "deviceorientation",
+          orientation,
+          true
+      );
+  } else if (os == "android") {
+      window.addEventListener(
+          "deviceorientationabsolute",
+          orientation,
+          true
+      );
+  } else{
+      window.alert("PC未対応サンプル");
+  }
+}
+
 function permitDeviceOrientationForSafari() {
   DeviceOrientationEvent.requestPermission()
     .then(response => {
