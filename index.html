@@ -19,7 +19,13 @@
   <script src='library/p5.sound.min.js'></script>
 
   <!-- JavaScriptファイルを連携 -->
-  <script>
+</head>
+
+<body>
+  <input type="button" id="permit" value="SafariでDeviceOrientationを許可" />
+  <p id="test">thisis
+  </p>
+  <script type="text/javascript">
     let os;
 
     // DOM構築完了イベントハンドラ登録
@@ -40,8 +46,13 @@
         );
       } else {
         console.log("PC未対応サンプル");
+        document.querySelector("#permit").addEventListener("click", failed);
         document.getElementById("test").innerHTML = "PC";
       }
+    }
+
+    function failed(){
+      alert("failed");
     }
 
     function detectOSSimply() {
@@ -74,12 +85,6 @@
     }
   </script>
   <script src='script.js'></script>
-</head>
-
-<body>
-  <input type="button" id="permit" value="SafariでDeviceOrientationを許可" />
-  <p id="test">thisis
-  </p>
 </body>
 
 </html>
