@@ -123,7 +123,7 @@ class Ball {
     this.angle += random(0.015);
     if (os == "iphone") {
       this.cR = Math.abs(rotationX) / 180 * 255;
-      this.speed = rotationZ / 36000;
+      this.speed = rotationZ / 10000;
     }
     this.size = 18 -sin(this.theta * 2) * 8;
   }
