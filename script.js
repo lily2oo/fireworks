@@ -8,37 +8,38 @@ os = detectOSSimply();
 function init() {
   os = detectOSSimply();
   if (os == "iphone") {
-      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
+    document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
 
-      window.addEventListener(
-          "deviceorientation",
-          orientation,
-          true
-      );
+    window.addEventListener(
+      "deviceorientation",
+      orientation,
+      true
+    );
   } else if (os == "android") {
-      window.addEventListener(
-          "deviceorientationabsolute",
-          orientation,
-          true
-      );
-  } else{
-      window.alert("PC未対応サンプル");
+    window.alert("Pans");
+    window.addEventListener(
+      "deviceorientationabsolute",
+      orientation,
+      true
+    );
+  } else {
+    window.alert("PC未対応サンプル");
   }
 }
 
 function detectOSSimply() {
   let ret;
   if (
-      navigator.userAgent.indexOf("iPhone") > 0 ||
-      navigator.userAgent.indexOf("iPad") > 0 ||
-      navigator.userAgent.indexOf("iPod") > 0
+    navigator.userAgent.indexOf("iPhone") > 0 ||
+    navigator.userAgent.indexOf("iPad") > 0 ||
+    navigator.userAgent.indexOf("iPod") > 0
   ) {
-      // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
-      ret = "iphone";
+    // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
+    ret = "iphone";
   } else if (navigator.userAgent.indexOf("Android") > 0) {
-      ret = "android";
+    ret = "android";
   } else {
-      ret = "pc";
+    ret = "pc";
   }
 
   return ret;
@@ -77,7 +78,7 @@ function draw() {
     balls[i].display();
     balls[i].update();
     if (os == "iphone") {
-      balls[i].cR = Math.abs(rotationX)/180 * 255;
+      balls[i].cR = Math.abs(rotationX) / 180 * 255;
       balls[i].speed = rotationZ / 36000;
       if (balls[i].size < 40) {
         balls[i].size += 0.1;
