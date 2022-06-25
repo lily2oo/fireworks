@@ -64,13 +64,13 @@ function draw() {
       balls[i].cR = rotationX;
       balls[i].speed = rotationZ / 36000;
       if (balls[i].size < 40) {
-        // balls[i].size += accelerationX;
-        // if (balls[i].size >= 23) {
-        //   balls[i].size -= accelerationX;
-        //   if (balls[i].size < 5) {
-        //     balls[i].size += accelerationX;
-        //   }
-        balls[i].size++;
+        balls[i].size += accelerationX;
+        if (balls[i].size >= 23) {
+          balls[i].size -= accelerationX;
+          if (balls[i].size < 5) {
+            balls[i].size += accelerationX;
+          }
+        }
       } else {
         balls[i].size = 10;
       }
@@ -97,7 +97,7 @@ function keyPressed() {
 class Ball {
   constructor() {
     this.cR = random(155);
-    this.cG = random(40);
+    this.cG = random(255);
     this.cB = random(100, 255);
     this.angle = 0;
     this.theta = 0;
