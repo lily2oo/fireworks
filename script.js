@@ -6,23 +6,39 @@ window.addEventListener("DOMContentLoaded", init);
 os = detectOSSimply();
 
 function init() {
+  os = detectOSSimply();
   if (os == "iphone") {
-    document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari)
-  } else {
-    console.log("未対応");
+      document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
+
+      window.addEventListener(
+          "deviceorientation",
+          orientation,
+          true
+      );
+  } else if (os == "android") {
+      window.addEventListener(
+          "deviceorientationabsolute",
+          orientation,
+          true
+      );
+  } else{
+      window.alert("PC未対応サンプル");
   }
 }
 
 function detectOSSimply() {
   let ret;
   if (
-    navigator.userAgent.indexOf("iPhone") > 0 ||
-    navigator.userAgent.indexOf("iPad") > 0 ||
-    navigator.userAgent.indexOf("iPod") > 0
+      navigator.userAgent.indexOf("iPhone") > 0 ||
+      navigator.userAgent.indexOf("iPad") > 0 ||
+      navigator.userAgent.indexOf("iPod") > 0
   ) {
-    ret = "iphone";
+      // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
+      ret = "iphone";
+  } else if (navigator.userAgent.indexOf("Android") > 0) {
+      ret = "android";
   } else {
-    ret = "pc";
+      ret = "pc";
   }
 
   return ret;
@@ -61,10 +77,10 @@ function draw() {
     balls[i].display();
     balls[i].update();
     if (os == "iphone") {
-      balls[i].cG = Math.abs(rotationX)/180 * 255;
+      balls[i].cR = Math.abs(rotationX)/180 * 255;
       balls[i].speed = rotationZ / 36000;
       if (balls[i].size < 40) {
-        balls[i].size ++;
+        balls[i].size += 0.1;
       } else {
         balls[i].size = 10;
       }
@@ -90,9 +106,9 @@ function keyPressed() {
 
 class Ball {
   constructor() {
-    this.cR = random(100, 220);
-    this.cG = random(100,150);
-    this.cB = random(0, 20);
+    balls[i].cR = random(155);
+    balls[i].cG = random(40);
+    balls[i].cB = random(100, 255);
     this.angle = 0;
     this.theta = 0;
     this.r = 0;
