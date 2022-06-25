@@ -8,6 +8,7 @@ os = detectOSSimply();
 function init() {
   os = detectOSSimply();
   if (os == "iphone") {
+    document.querySelector("#permit").style.display = "block";
     document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
     window.addEventListener("deviceorientation", getOrientation(), true);
   } else if (os == "android") {

@@ -21,4 +21,5 @@ canvas {
   position: relative;
   z-index: 1000;
   font-size: 30px;
+  display: none;
 }
