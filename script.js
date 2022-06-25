@@ -64,7 +64,7 @@ function draw() {
       balls[i].cG = rotationX;
       balls[i].speed = rotationZ / 36000;
       if (balls[i].size < 40) {
-        balls[i].size += 3;
+        balls[i].size ++;
       } else {
         balls[i].size = 10;
       }
@@ -90,7 +90,7 @@ function keyPressed() {
 
 class Ball {
   constructor() {
-    this.cR = random(200, 255);
+    this.cR = random(100, 220);
     this.cG = random(100,150);
     this.cB = random(0, 20);
     this.angle = 0;
