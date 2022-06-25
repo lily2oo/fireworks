@@ -61,7 +61,7 @@ function draw() {
     balls[i].display();
     balls[i].update();
     if (os == "iphone") {
-      balls[i].cG = rotationX;
+      balls[i].cG = Math.abs(rotationX)/180 * 255;
       balls[i].speed = rotationZ / 36000;
       if (balls[i].size < 40) {
         balls[i].size ++;
