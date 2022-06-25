@@ -57,14 +57,15 @@ function setup() {
 function draw() {
   translate(width / 2, height / 2);
   image(bg, 0, 0);
+  num += accelerationX;
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
-    if (os == "iphone") {
-      balls[i].cR = rotationX;
-      balls[i].speed = rotationZ / 36000;
-      balls[i].size += accelerationX;
-    }
+    // if (os == "iphone") {
+    //   balls[i].cR = rotationX;
+    //   balls[i].speed = rotationZ / 36000;
+    //   balls[i].size += accelerationX;
+    // }
   }
 }
 
