@@ -63,6 +63,11 @@ function draw() {
     if (os == "iphone") {
       balls[i].cR = rotationX;
       balls[i].speed = rotationZ / 36000;
+      if (balls[i].size < 40) {
+        balls[i].size++;
+      } else {
+        balls[i].size -= rotationY;
+      }
     }
   }
 }
@@ -85,7 +90,7 @@ function keyPressed() {
 
 class Ball {
   constructor() {
-    this.cR = random(155);
+    this.cR = random(200, 255);
     this.cG = random(100,150);
     this.cB = random(0, 20);
     this.angle = 0;
