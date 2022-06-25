@@ -66,7 +66,7 @@ function setup() {
 
 function draw() {
   translate(width / 2, height / 2);
-  image(bg, 0, 0);
+  image(bg, 0, 0, windowHeight, windowHeight);
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
