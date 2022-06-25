@@ -12,14 +12,12 @@ function init() {
     window.addEventListener("deviceorientation", getOrientation(), true);
   } else if (os == "android") {
     window.addEventListener("deviceorientationabsolute", getOrientation(), true);
-  }
-  else {
+  } else {
     window.alert("PC未対応サンプル");
   }
 }
 
-function getOrientation(event) {
-}
+function getOrientation(event) {}
 
 function detectOSSimply() {
   let ret;
@@ -71,15 +69,12 @@ function draw() {
   for (var i = 0; i < num; i++) {
     balls[i].display();
     balls[i].update();
-    if (os == "iphone") {
-      balls[i].cR = Math.abs(rotationX) / 180 * 255;
-      balls[i].speed = rotationZ / 36000;
-      if (balls[i].size < 40) {
-        balls[i].size += 0.1;
-      } else {
-        balls[i].size = 10;
-      }
-    }
+  }
+}
+
+function deviceMoved() {
+  for (var i = 0; i < num; i++) {
+    balls[i].size -= 3;
   }
 }
 
@@ -113,10 +108,6 @@ class Ball {
     this.size = 18;
   }
 
-  update() {
-    this.angle += random(0.015);
-  }
-
   display() {
     this.theta += this.speed;
     this.r = 1 + cos(7 * this.theta / 8)
@@ -127,4 +118,14 @@ class Ball {
     ellipse(this.x, this.y, this.size);
     rotate(this.angle);
   }
+
+  update() {
+    this.angle += random(0.015);
+    if (os == "iphone") {
+      this.cR = Math.abs(rotationX) / 180 * 255;
+      this.speed = rotationZ / 36000;
+    }
+    this.size = 18 -sin(this.theta * 2) * 8;
+  }
+
 }
