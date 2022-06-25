@@ -9,22 +9,16 @@ function init() {
   os = detectOSSimply();
   if (os == "iphone") {
     document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
-
-    window.addEventListener(
-      "deviceorientation",
-      orientation,
-      true
-    );
+    window.addEventListener("deviceorientation", getOrientation(), true);
   } else if (os == "android") {
-    window.alert("Pans");
-    window.addEventListener(
-      "deviceorientationabsolute",
-      orientation,
-      true
-    );
-  } else {
+    window.addEventListener("deviceorientationabsolute", getOrientation(), true);
+  }
+  else {
     window.alert("PC未対応サンプル");
   }
+}
+
+function getOrientation(event) {
 }
 
 function detectOSSimply() {
@@ -107,9 +101,9 @@ function keyPressed() {
 
 class Ball {
   constructor() {
-    balls[i].cR = random(155);
-    balls[i].cG = random(40);
-    balls[i].cB = random(100, 255);
+    this.cR = random(155);
+    this.cG = random(40);
+    this.cB = random(100, 255);
     this.angle = 0;
     this.theta = 0;
     this.r = 0;
