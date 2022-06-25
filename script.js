@@ -65,7 +65,14 @@ function draw() {
       balls[i].speed = rotationZ / 36000;
       if (balls[i].size < 30) {
         balls[i].size += accelerationX;
-      } else {
+        if(balls[i].size >= 30){
+          balls[i].size -= accelerationX;
+          if(balls[i].size < 5){
+            balls[i].size += accelerationX;
+          }
+        }
+      }
+      else{
         balls[i].size -= accelerationX;
       }
     }
