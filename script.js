@@ -63,7 +63,11 @@ function draw() {
     if (os == "iphone") {
       balls[i].cR = rotationX;
       balls[i].speed = rotationZ / 36000;
-      balls[i].size += accelerationX;
+      if (balls[i].size < 30) {
+        balls[i].size += accelerationX;
+      } else {
+        balls[i].size -= accelerationX;
+      }
     }
   }
 }
